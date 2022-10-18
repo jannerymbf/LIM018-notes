@@ -1,0 +1,87 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container-signup, form, .inputs {
+  gap: 30px;
+}
+
+section {
+  background: #6030DA;
+  height: 100vh;
+}
+
+.logo {
+  color: #fff;
+  font-family: 'Zilla Slab', serif;
+  font-weight: 700;
+  font-size: 64px;
+}
+
+span {
+  position: relative;
+}
+
+input {
+  width: 480px;
+  height: 70px;
+  border-radius: 30px;
+  padding-left: 70px;
+  border: none;
+
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: #6030DA;
+}
+
+input::placeholder {
+  color: #9F9F9F;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #D98E45;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  margin-left: 30px;
+}
+
+button {
+  width: 480px;
+  height: 60px;
+  background: #D98E45;
+  border: none;
+  border-radius: 30px;
+
+  font-size: 24px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: #fff;
+}
+
+.for-signin {
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: #fff;
+}
+
+a {
+  color: #D98E45;
+  font-weight: 700;
+  text-decoration: none;
+}
