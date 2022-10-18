@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lab-notes-7fbc4": {
+      "hosting": {
+        "LIM018-notes": [
+          "lab-notes-7fbc4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lab-notes-7fbc4"
+  }
+}
