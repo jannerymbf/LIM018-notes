@@ -15,14 +15,18 @@ export class SignupComponent implements OnInit {
   }
 
   registerUser(name: string, email: string, pass: string) {
-    this.auth.signup(email, pass)
+    if(name === '' || email === '' || pass === ''){
+      console.log('campos vacíos')
+    } else {
+      this.auth.signup(email, pass)
       .then((resp) => {
         console.log(resp)
         this.auth.updateUser(name);
         this.route.navigateByUrl('/login');
       })
-      .catch((err) => {
-        console.log('Be acreful!!', err)
+      .catch(() => {
+        console.log('Be careful!!')
       })
+    }
   }
 }
