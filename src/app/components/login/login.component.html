@@ -4,14 +4,14 @@
     <div class="inputs flex-column">
       <span class="flex-row">
         <img src="./assets/icons/email.png">
-        <input type="text" placeholder="Your email" autofocus>
+        <input type="text" placeholder="Your email" #email autofocus>
       </span>
       <span class="flex-row">
         <img src="./assets/icons/lock.png">
-        <input type="password" placeholder="Your password">
+        <input type="password" placeholder="Your password" #pass>
       </span>
     </div>
-    <button>Sign in</button>
+    <button type="button" (click)="signIn(email.value, pass.value)">Sign in</button>
     <span class="flex-row">
       <img src="./assets/icons/google.png" alt="">
       <div class="google flex-column">Sign in with Google</div>
