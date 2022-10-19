@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -42,10 +42,10 @@ const routes:Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase), // old form
     // AngularFireModule,
     AngularFirestoreModule, // firestore
-    AngularFireAuthModule,
+    AngularFireAuthModule, // auth
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],

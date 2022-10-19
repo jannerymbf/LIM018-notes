@@ -4,7 +4,7 @@
     <div class="inputs flex-column">
       <span class="flex-row">
         <img src="./assets/icons/usuario.png">
-        <input type="text" placeholder="Your user" autofocus>
+        <input type="text" placeholder="Your user" #name autofocus>
       </span>
       <span class="flex-row">
         <img src="./assets/icons/email.png">
@@ -16,7 +16,7 @@
       </span>
     </div>
     <!--Add type, so it doesn't refresh-->
-    <button type="button" (click)="registerUser(email.value, pass.value)">Sign up</button>
+    <button type="button" (click)="registerUser(name.value, email.value, pass.value)">Sign up</button>
   </form>
   <div class="for-signin">Already have an account? <a href="/login">Sign in.</a></div>
 </section>
