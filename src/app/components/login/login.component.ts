@@ -17,4 +17,9 @@ export class LoginComponent implements OnInit {
     this.auth.login(email, pass);
     console.log('Youre in :D')
   }
+
+  signInWithGoogle() {
+    this.auth.loginWithGoogle();
+    console.log('Youre in :D with Google')
+  }
 }

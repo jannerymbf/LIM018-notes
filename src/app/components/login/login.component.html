@@ -12,7 +12,7 @@
       </span>
     </div>
     <button type="button" (click)="signIn(email.value, pass.value)">Sign in</button>
-    <span class="flex-row">
+    <span class="flex-row" (click)="signInWithGoogle()">
       <img src="./assets/icons/google.png" alt="">
       <div class="google flex-column">Sign in with Google</div>
     </span>
