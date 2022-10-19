@@ -10,6 +10,9 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 const routes:Routes = [
   {
@@ -38,7 +41,11 @@ const routes:Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireModule,
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule,
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],

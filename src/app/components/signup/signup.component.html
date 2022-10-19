@@ -8,14 +8,15 @@
       </span>
       <span class="flex-row">
         <img src="./assets/icons/email.png">
-        <input type="text" placeholder="Your email">
+        <input type="email" placeholder="Your email" #email>
       </span>
       <span class="flex-row">
         <img src="./assets/icons/lock.png">
-        <input type="password" placeholder="Create password">
+        <input type="password" placeholder="Create password" #pass>
       </span>
     </div>
-    <button>Sign up</button>
+    <!--Add type, so it doesn't refresh-->
+    <button type="button" (click)="registerUser(email.value, pass.value)">Sign up</button>
   </form>
   <div class="for-signin">Already have an account? <a href="/login">Sign in.</a></div>
 </section>
