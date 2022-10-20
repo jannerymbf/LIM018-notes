@@ -18,5 +18,11 @@
     <!--Add type, so it doesn't refresh-->
     <button type="button" (click)="registerUser(name.value, email.value, pass.value)">Sign up</button>
   </form>
+  <dialog #successModal>
+    <img src="">
+    <h1>Congrats!</h1>
+    <h3>Your account has been created.</h3>
+    <button (click)="closeModal()">OK</button>
+  </dialog>
   <div class="for-signin">Already have an account? <a href="/login">Sign in.</a></div>
 </section>
