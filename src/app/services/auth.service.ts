@@ -22,11 +22,11 @@ export class AuthService {
   }
 
   login(email: string, pass: string) {
-    this.auth.signInWithEmailAndPassword(email, pass);
+    return this.auth.signInWithEmailAndPassword(email, pass);
   }
 
   loginWithGoogle() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
 }

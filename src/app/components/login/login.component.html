@@ -3,12 +3,12 @@
   <form class="flex-column">
     <div class="inputs flex-column">
       <span class="flex-row">
-        <img src="./assets/icons/email.png">
-        <input type="text" placeholder="Your email" #email autofocus>
+        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/email.png'">
+        <input type="text" placeholder="Your email" [ngClass]="{'span-alert' : confirmInput === false}" #email autofocus>
       </span>
       <span class="flex-row">
-        <img src="./assets/icons/lock.png">
-        <input type="password" placeholder="Your password" #pass>
+        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/lock.png'">
+        <input type="password" placeholder="Your password" [ngClass]="{'span-alert' : confirmInput === false}" #pass>
       </span>
     </div>
     <button type="button" (click)="signIn(email.value, pass.value)">Sign in</button>
