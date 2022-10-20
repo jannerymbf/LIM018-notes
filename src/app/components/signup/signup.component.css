@@ -39,7 +39,6 @@ input {
   border: none;
 
   font-size: 20px;
-  font-family: 'Lato', sans-serif;
   font-weight: 400;
   color: #6030DA;
 }
@@ -68,14 +67,12 @@ button {
   border-radius: 30px;
 
   font-size: 24px;
-  font-family: 'Lato', sans-serif;
   font-weight: 700;
   color: #fff;
 }
 
 .for-signin {
   font-size: 20px;
-  font-family: 'Lato', sans-serif;
   font-weight: 400;
   color: #fff;
 }
@@ -84,4 +81,8 @@ a {
   color: #D98E45;
   font-weight: 700;
   text-decoration: none;
+}
+
+.span-alert {
+  border: 2px solid #EE404C;
 }

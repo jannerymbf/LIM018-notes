@@ -14,9 +14,11 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  confirmInput: boolean = true;
+
   registerUser(name: string, email: string, pass: string) {
     if(name === '' || email === '' || pass === ''){
-      console.log('campos vacíos')
+      this.confirmInput = false;
     } else {
       this.auth.signup(email, pass)
       .then((resp) => {

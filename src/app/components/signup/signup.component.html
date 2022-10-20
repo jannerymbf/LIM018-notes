@@ -3,16 +3,16 @@
   <form class="flex-column">
     <div class="inputs flex-column">
       <span class="flex-row">
-        <img src="./assets/icons/usuario.png">
-        <input type="text" placeholder="Your user" #name autofocus>
+        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/usuario.png'">
+        <input type="text" placeholder="Your user" [ngClass]="{'span-alert' : confirmInput === false}" #name autofocus>
       </span>
       <span class="flex-row">
-        <img src="./assets/icons/email.png">
-        <input type="email" placeholder="Your email" #email>
+        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/email.png'">
+        <input type="email" placeholder="Your email" [ngClass]="{'span-alert' : confirmInput === false}" #email>
       </span>
       <span class="flex-row">
-        <img src="./assets/icons/lock.png">
-        <input type="password" placeholder="Create password" #pass>
+        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/lock.png'">
+        <input type="password" placeholder="Create password" [ngClass]="{'span-alert' : confirmInput === false}" #pass>
       </span>
     </div>
     <!--Add type, so it doesn't refresh-->
