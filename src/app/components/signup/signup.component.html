@@ -3,15 +3,15 @@
   <form class="flex-column">
     <div class="inputs flex-column">
       <span class="flex-row">
-        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/usuario.png'">
+        <img class="img-input" [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/usuario.png'">
         <input type="text" placeholder="Your user" [ngClass]="{'span-alert' : confirmInput === false}" #name autofocus>
       </span>
       <span class="flex-row">
-        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/email.png'">
+        <img class="img-input" [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/email.png'">
         <input type="email" placeholder="Your email" [ngClass]="{'span-alert' : confirmInput === false}" #email>
       </span>
       <span class="flex-row">
-        <img [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/lock.png'">
+        <img class="img-input" [src]="confirmInput === false ? './assets/icons/alert.png' : './assets/icons/lock.png'">
         <input type="password" placeholder="Create password" [ngClass]="{'span-alert' : confirmInput === false}" #pass>
       </span>
     </div>
@@ -19,10 +19,14 @@
     <button type="button" (click)="registerUser(name.value, email.value, pass.value)">Sign up</button>
   </form>
   <dialog #successModal>
-    <img src="">
-    <h1>Congrats!</h1>
-    <h3>Your account has been created.</h3>
-    <button (click)="closeModal()">OK</button>
+    <div class="dialog">
+      <div class="container-modal">
+        <img src="./assets/icons/check.png" alt="Success-icon">
+        <h1>Congrats!</h1>
+        <h3>Your account has been created.</h3>
+        <button class="btn-closeModal" (click)="closeModal()">OK</button>
+      </div>
+    </div>
   </dialog>
   <div class="for-signin">Already have an account? <a href="/login">Sign in.</a></div>
 </section>
