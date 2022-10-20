@@ -12,6 +12,19 @@ export class MainComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getCurrentUser();
+  }
+
+  name: string = '';
+
+  getCurrentUser() {
+    this.auth.getCurrentUser()
+      .then(user => {
+        this.name = user.displayName;
+      })
+      .catch(() => {
+        this.name = 'Anonymous';
+      })
   }
 
   signOut() {
