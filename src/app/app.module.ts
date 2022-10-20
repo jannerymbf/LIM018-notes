@@ -28,6 +28,10 @@ const routes:Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'notes',
+    component: MainComponent
   }
 
 ]
