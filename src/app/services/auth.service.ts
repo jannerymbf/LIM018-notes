@@ -29,4 +29,14 @@ export class AuthService {
     return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
+  logout() {
+    this.auth.signOut();
+  }
+
+  async getCurrentUser() {
+    this.currentUser = await this.auth.currentUser;
+    console.log(this.currentUser);
+    return this.currentUser;
+  }
+
 }

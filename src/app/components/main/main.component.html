@@ -1,1 +1,30 @@
-<p>main works!</p>
+<header class="flex-row">
+  <p class="header-welcome">Hi, {{ name }}!</p>
+  <span class="header-options flex-row">
+    <p>+Add note</p>
+    <p (click)="signOut()">Sign out</p>
+  </span>
+</header>
+
+<main class="flex-row">
+  <aside>
+    <div class="container-notes flex-column">
+      <div class="note">
+        <div class="note-text flex-column">
+          <h3>Title note</h3>
+          <p>The beginning of the note...</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <section>
+    <div class="display-note flex-column">
+      <h1>Title note</h1>
+      <p>Content of the note</p>
+    </div>
+    <div class="btn-section flex-column">
+      <img src="./assets/icons/edit.png" alt="Edit button">
+      <img src="./assets/icons/bin.png" alt="Delete button">
+    </div>
+  </section>
+</main>

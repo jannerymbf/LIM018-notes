@@ -1,0 +1,99 @@
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for header */
+
+header {
+  background: #6030DA;
+  color: #fff;
+  justify-content: space-between;
+  height: 12vh;
+  padding: 0px 30px 0px 30px;
+}
+
+.header-welcome {
+  font-family: 'Zilla Slab', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.header-options {
+  gap: 50px; 
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* Style for list of notes */
+
+aside {
+  background: #EFEFEF;
+  width: 30vw;
+  height: 88vh;
+  
+}
+
+.container-notes {
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.note {
+  padding: 20px;
+  border-bottom: 2px solid #9F9F9F;
+}
+
+.note-text {
+  padding: 20px 10px;
+  gap: 5px;
+}
+
+aside h3 {
+  font-size: 20px;
+}
+
+aside p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #9F9F9F;
+}
+
+/* Styles for note display */
+
+section {
+  width: 70vw;
+  height: 88vh;
+  padding: 40px;
+  position: relative;
+}
+
+.display-note {
+  gap: 20px;
+}
+
+section h1 {
+  font-size: 40px;
+  color: #D98E45;
+}
+
+section p {
+  font-size: 20px;
+}
+
+section img {
+  width: 60px;
+  height: 60px;
+}
+
+.btn-section {
+  position: absolute;
+  gap: 10px;
+  bottom: 5%;
+  right: 5%;
+}
