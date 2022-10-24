@@ -35,6 +35,8 @@ export class MainComponent implements OnInit {
   notes: any[] = [];
   note = {title: '', content: ''};
   @ViewChild('addNoteModal') modalAddNote!: ElementRef;
+  @ViewChild('title') title!: ElementRef;
+  @ViewChild('content') content!: ElementRef;
 
   getAllUsers() {
     this.fs.getAllUSers().subscribe(querySnapshot => {
@@ -45,8 +47,14 @@ export class MainComponent implements OnInit {
   }
 
   addNote(title: string, content: string) {
+    this.title.nativeElement.value = '';
+    this.content.nativeElement.value = '';
+
     if(this.users.includes(this.uid)) {
-      console.log('Sí está') //not working
+      this.fs.updateNote(this.uid, {title: title, content: content})
+        .then(() => {
+          this.modalAddNote.nativeElement.close();
+        })
     } else {
       this.note = {title: title, content: content};
       this.notes.push(this.note);

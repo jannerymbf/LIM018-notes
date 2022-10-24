@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/compat/app'; // to use arrayUnion
 import User from '../interfaces/user.interface';
 
 @Injectable({
@@ -22,8 +22,9 @@ export class FirestoreService {
   }
 
   updateNote(id: string, note: {}) {
-    // this.fs.collection('UserNotes').doc(id).update({
-    //   notes: firebase.firestore.FieldValue.arrayUnion(note),
-    // }
+    return this.fs.collection('UserNotes').doc(id).update({
+      notes: firebase.firestore.FieldValue.arrayUnion(note)
+    })
   }
+
 }
