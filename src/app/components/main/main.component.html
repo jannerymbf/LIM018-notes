@@ -1,7 +1,7 @@
 <header class="flex-row">
   <p class="header-welcome">Hi, {{ name }}!</p>
   <span class="header-options flex-row">
-    <p>+Add note</p>
+    <p (click)="addNoteModal.showModal()">+Add note</p>
     <p (click)="signOut()">Sign out</p>
   </span>
 </header>
@@ -27,4 +27,13 @@
       <img src="./assets/icons/bin.png" alt="Delete button">
     </div>
   </section>
+  <dialog #addNoteModal>
+    <div class="dialog">
+      <div class="container-modal flex-column">
+        <input type="text" class="note-title" placeholder="Add a title..." #title>
+        <textarea cols="30" rows="10" class="note-content" placeholder="Add some content..." #content></textarea>
+        <button type="button" class="btn-closeModal" (click)="addNote(title.value, content.value)">Add</button>
+      </div>
+    </div>
+  </dialog>
 </main>

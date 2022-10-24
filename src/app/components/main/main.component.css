@@ -97,3 +97,75 @@ section img {
   bottom: 5%;
   right: 5%;
 }
+
+/* Style for modal to add note */
+
+.dialog {
+  background: rgba(159, 159, 159, 0.49);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  padding: 16px;
+  z-index: 9999;
+}
+
+.container-modal {
+  left: 40%;
+  width: 720px;
+  height: 420px;
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+dialog input, dialog textarea {
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid #9F9F9F;
+  padding: 15px;
+}
+
+.note-title {
+  font-size: 32px;
+  color: #D98E45;
+  font-weight: 700;
+}
+
+.note-title::placeholder {
+  font-size: 32px;
+  color: #D98E45;
+  font-weight: 700;
+  vertical-align: center;
+}
+
+.note-content {
+  font-size: 20px;
+  color: #000;
+  resize: none;
+}
+
+.btn-closeModal {
+  height: 40px;
+  width: 130px;
+  border-radius: 30px;
+  background: #D98E45;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+}
