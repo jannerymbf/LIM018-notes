@@ -50,19 +50,26 @@ aside {
   border-bottom: 2px solid #9F9F9F;
 }
 
-.note-text {
+.noteList-text {
   padding: 20px 10px;
   gap: 5px;
 }
 
-aside h3 {
+.noteList-title {
   font-size: 20px;
 }
 
-aside p {
+.noteList-content {
   font-size: 20px;
   font-weight: 400;
   color: #9F9F9F;
+}
+
+#note-text:hover {
+  cursor: pointer;
+  background: #D98E45;
+  border-radius: 20px;
+  color: #fff !important;
 }
 
 /* Styles for note display */

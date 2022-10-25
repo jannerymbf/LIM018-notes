@@ -10,9 +10,9 @@
   <aside #notes>
     <div *ngFor="let note of userNotes" class="container-notes flex-column" >
       <div class="note">
-        <div class="note-text flex-column">
-          <h3>{{note.title}}</h3>
-          <p class="twenty-chars">{{note.content}}</p>
+        <div id="note-text" class="noteList-text flex-column">
+          <h3 class="noteList-title">{{note.title}}</h3>
+          <p class="noteList-content twenty-chars">{{note.content}}</p>
         </div>
       </div>
     </div>
