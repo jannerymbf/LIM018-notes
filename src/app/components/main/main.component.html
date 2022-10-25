@@ -8,11 +8,11 @@
 
 <main class="flex-row">
   <aside>
-    <div class="container-notes flex-column">
+    <div *ngFor="let note of userNotes" class="container-notes flex-column">
       <div class="note">
         <div class="note-text flex-column">
-          <h3>Title note</h3>
-          <p>The beginning of the note...</p>
+          <h3>{{note.title}}</h3>
+          <p class="twenty-chars">{{note.content}}</p>
         </div>
       </div>
     </div>

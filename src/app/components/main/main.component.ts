@@ -8,6 +8,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit {
 
   constructor(private auth: AuthService, private fs: FirestoreService, private router: Router) { }
@@ -25,6 +26,7 @@ export class MainComponent implements OnInit {
       .then(user => {
         this.name = user.displayName;
         this.uid = user.uid;
+        this.showNotes();
       })
       .catch(() => {
         this.name = 'Anonymous';
@@ -63,6 +65,14 @@ export class MainComponent implements OnInit {
           this.modalAddNote.nativeElement.close();
         })
     }
+  }
+
+  userNotes: any[] = [];
+  
+  showNotes() {
+    this.fs.displayNotes(this.uid).subscribe((e: any) => {
+      this.userNotes = e.notes;
+    })
   }
 
   signOut() {
