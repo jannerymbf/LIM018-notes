@@ -28,7 +28,7 @@ export class FirestoreService {
   }
 
   displayNotes(id: string) {
-    return this.fs.collection('UserNotes').doc(id).valueChanges();
+    return this.fs.collection('UserNotes').doc(id).valueChanges({idField: 'id'});
   }
 
 }

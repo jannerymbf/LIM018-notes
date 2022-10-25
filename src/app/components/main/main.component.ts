@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -11,7 +11,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 
 export class MainComponent implements OnInit {
 
-  constructor(private auth: AuthService, private fs: FirestoreService, private router: Router) { }
+  constructor(private auth: AuthService, private fs: FirestoreService, private router: Router, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.getCurrentUser();
@@ -39,6 +39,7 @@ export class MainComponent implements OnInit {
   @ViewChild('addNoteModal') modalAddNote!: ElementRef;
   @ViewChild('title') title!: ElementRef;
   @ViewChild('content') content!: ElementRef;
+  @ViewChild('notes') notesDisplayed!: ElementRef;
 
   getAllUsers() {
     this.fs.getAllUSers().subscribe(querySnapshot => {
@@ -68,11 +69,21 @@ export class MainComponent implements OnInit {
   }
 
   userNotes: any[] = [];
-  
+
   showNotes() {
     this.fs.displayNotes(this.uid).subscribe((e: any) => {
       this.userNotes = e.notes;
     })
+  }
+
+  titleToBeDisplayed: string = '';
+  contentToBeDisplayed: string = '';
+
+  ngAfterViewInit(): void {
+    this.renderer.listen(this.notesDisplayed.nativeElement, 'click', event => {
+      this.titleToBeDisplayed = event.target.parentNode.querySelector('h3').textContent;
+      this.contentToBeDisplayed = event.target.parentNode.querySelector('p').textContent;
+    });
   }
 
   signOut() {
