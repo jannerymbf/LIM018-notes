@@ -69,15 +69,17 @@ export class MainComponent implements OnInit {
   }
 
   userNotes: any[] = [];
+  titleToBeDisplayed: string = '';
+  contentToBeDisplayed: string = '';
 
   showNotes() {
     this.fs.displayNotes(this.uid).subscribe((e: any) => {
       this.userNotes = e.notes;
+      // to display the first note when page first loaded
+      this.titleToBeDisplayed = this.userNotes[0].title;
+      this.contentToBeDisplayed = this.userNotes[0].content;
     })
   }
-
-  titleToBeDisplayed: string = '';
-  contentToBeDisplayed: string = '';
 
   ngAfterViewInit(): void {
     this.renderer.listen(this.notesDisplayed.nativeElement, 'click', event => {
