@@ -88,6 +88,10 @@ export class MainComponent implements OnInit {
     });
   }
 
+  deleteNote() {
+    this.fs.deleteNote(this.uid, {title: this.titleToBeDisplayed, content: this.contentToBeDisplayed});
+  }
+
   signOut() {
     this.auth.logout();
     this.router.navigateByUrl('/login');

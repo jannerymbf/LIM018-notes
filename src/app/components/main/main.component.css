@@ -50,19 +50,34 @@ aside {
   border-bottom: 2px solid #9F9F9F;
 }
 
-.note-text {
+.noteList-text {
   padding: 20px 10px;
   gap: 5px;
 }
 
-aside h3 {
-  font-size: 20px;
+.noteList-title {
+  font-size: 24px;
+  font-weight: 700;
 }
 
-aside p {
+.noteList-content {
   font-size: 20px;
   font-weight: 400;
-  color: #9F9F9F;
+  /* color: #9F9F9F; */
+}
+
+.twenty-chars {
+  width: 20ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#note-text:hover {
+  cursor: pointer;
+  background: #D98E45;
+  border-radius: 20px;
+  color: #fff;
 }
 
 /* Styles for note display */
@@ -169,11 +184,4 @@ dialog input, dialog textarea {
   font-size: 20px;
   font-weight: 700;
   border: none;
-}
-
-.twenty-chars {
-  width: 20ch;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
