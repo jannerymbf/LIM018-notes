@@ -31,4 +31,10 @@ export class FirestoreService {
     return this.fs.collection('UserNotes').doc(id).valueChanges({idField: 'id'});
   }
 
+  deleteNote(id: string, note: {}) {
+    return this.fs.collection('UserNotes').doc(id).update({
+      notes: firebase.firestore.FieldValue.arrayRemove(note)
+    })
+  }
+
 }
