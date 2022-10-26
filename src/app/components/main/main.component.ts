@@ -29,7 +29,9 @@ export class MainComponent implements OnInit {
         this.showNotes();
       })
       .catch(() => {
-        this.name = 'Anonymous';
+        // to prevent users from changinh routes without signing in
+        this.router.navigateByUrl('/login');
+        // this.name = 'Anonymous';
       })
   }
 
