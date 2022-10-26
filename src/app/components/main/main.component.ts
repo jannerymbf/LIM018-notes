@@ -49,15 +49,35 @@ export class MainComponent implements OnInit {
     })
   }
 
+  editStatus: boolean = false;
+  userNotes: any[] = [];
+  titleToBeDisplayed: string = '';
+  contentToBeDisplayed: string = '';
+
+  showModal() {
+    this.editStatus = false;
+    this.modalAddNote.nativeElement.showModal()
+  }
+
   addNote(title: string, content: string) {
     this.title.nativeElement.value = '';
     this.content.nativeElement.value = '';
 
     if(this.users.includes(this.uid)) {
-      this.fs.updateNote(this.uid, {title: title, content: content})
+      if(this.editStatus) {
+        this.fs.updateNote(this.uid, {title: title, content: content})
         .then(() => {
+          this.deleteNote();
           this.modalAddNote.nativeElement.close();
         })
+      } else {
+        this.fs.updateNote(this.uid, {title: title, content: content})
+        .then(() => {
+          this.modalAddNote.nativeElement.close();
+          this.titleToBeDisplayed = title;
+          this.contentToBeDisplayed = content;
+        })
+      }
     } else {
       this.note = {title: title, content: content};
       this.notes.push(this.note);
@@ -68,16 +88,12 @@ export class MainComponent implements OnInit {
     }
   }
 
-  userNotes: any[] = [];
-  titleToBeDisplayed: string = '';
-  contentToBeDisplayed: string = '';
-
   showNotes() {
     this.fs.displayNotes(this.uid).subscribe((e: any) => {
       this.userNotes = e.notes;
       // to display the first note when page first loaded
-      this.titleToBeDisplayed = this.userNotes[0].title;
-      this.contentToBeDisplayed = this.userNotes[0].content;
+      // this.titleToBeDisplayed = this.userNotes[0].title;
+      // this.contentToBeDisplayed = this.userNotes[0].content;
     })
   }
 
@@ -86,6 +102,14 @@ export class MainComponent implements OnInit {
       this.titleToBeDisplayed = event.target.parentNode.querySelector('h3').textContent;
       this.contentToBeDisplayed = event.target.parentNode.querySelector('p').textContent;
     });
+  }
+
+  openModalToModify() {
+    this.editStatus = true;
+    this.modalAddNote.nativeElement.showModal();
+    this.title.nativeElement.value = this.titleToBeDisplayed;
+    this.content.nativeElement.value = this.contentToBeDisplayed;
+    console.log('Status', this.editStatus);
   }
 
   deleteNote() {

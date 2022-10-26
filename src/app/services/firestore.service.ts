@@ -21,6 +21,8 @@ export class FirestoreService {
     return this.fs.collection('UserNotes').get();
   }
 
+  // This one is for adding notes to the array
+
   updateNote(id: string, note: {}) {
     return this.fs.collection('UserNotes').doc(id).update({
       notes: firebase.firestore.FieldValue.arrayUnion(note)
@@ -31,10 +33,20 @@ export class FirestoreService {
     return this.fs.collection('UserNotes').doc(id).valueChanges({idField: 'id'});
   }
 
+  // This one is for removing notes from the array
+
   deleteNote(id: string, note: {}) {
     return this.fs.collection('UserNotes').doc(id).update({
       notes: firebase.firestore.FieldValue.arrayRemove(note)
     })
   }
+
+  // This one is for modifying a note
+
+  // modifyNote(id: string) {
+  //   this.fs.collection('UserNotes').doc(id).update({
+  //     notes: firebase.firestore.FieldValue.
+  //   })
+  // }
 
 }
