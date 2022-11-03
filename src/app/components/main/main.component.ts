@@ -13,10 +13,7 @@ export class MainComponent implements OnInit {
 
   constructor(private auth: AuthService, private fs: FirestoreService, private router: Router, private renderer: Renderer2) { }
 
-  ngOnInit(): void {
-    this.getCurrentUser();
-    this.getAllUsers();
-  }
+  
 
   name: string = '';
   uid: string = '';
@@ -38,10 +35,12 @@ export class MainComponent implements OnInit {
   users: any[] = [];
   notes: any[] = [];
   note = {title: '', content: ''};
+  
   @ViewChild('addNoteModal') modalAddNote!: ElementRef;
   @ViewChild('title') title!: ElementRef;
   @ViewChild('content') content!: ElementRef;
   @ViewChild('notes') notesDisplayed!: ElementRef;
+  @ViewChild('btnCloseModal') btnCloseModal!: ElementRef;
 
   getAllUsers() {
     this.fs.getAllUSers().subscribe(querySnapshot => {
@@ -55,10 +54,12 @@ export class MainComponent implements OnInit {
   userNotes: any[] = [];
   titleToBeDisplayed: string = '';
   contentToBeDisplayed: string = '';
+  
 
   showModal() {
     this.editStatus = false;
-    this.modalAddNote.nativeElement.showModal()
+    this.btnCloseModal.nativeElement.textContent = 'Add';
+    this.modalAddNote.nativeElement.showModal();
   }
 
   addNote(title: string, content: string) {
@@ -70,14 +71,16 @@ export class MainComponent implements OnInit {
         this.fs.updateNote(this.uid, {title: title, content: content})
         .then(() => {
           this.deleteNote();
+          this.titleToBeDisplayed = title;
+          this.contentToBeDisplayed = content;
           this.modalAddNote.nativeElement.close();
         })
       } else {
         this.fs.updateNote(this.uid, {title: title, content: content})
         .then(() => {
-          this.modalAddNote.nativeElement.close();
           this.titleToBeDisplayed = title;
           this.contentToBeDisplayed = content;
+          this.modalAddNote.nativeElement.close();
         })
       }
     } else {
@@ -85,6 +88,8 @@ export class MainComponent implements OnInit {
       this.notes.push(this.note);
       this.fs.addNote({id: this.uid, name: this.name, notes: this.notes})
         .then(() => {
+          this.titleToBeDisplayed = title;
+          this.contentToBeDisplayed = content;
           this.modalAddNote.nativeElement.close();
         })
     }
@@ -99,6 +104,12 @@ export class MainComponent implements OnInit {
     })
   }
 
+  ngOnInit(): void {
+    this.getCurrentUser();
+    this.getAllUsers();
+    
+  }
+
   ngAfterViewInit(): void {
     this.renderer.listen(this.notesDisplayed.nativeElement, 'click', event => {
       this.titleToBeDisplayed = event.target.parentNode.querySelector('h3').textContent;
@@ -108,6 +119,7 @@ export class MainComponent implements OnInit {
 
   openModalToModify() {
     this.editStatus = true;
+    this.btnCloseModal.nativeElement.textContent = 'Update';
     this.modalAddNote.nativeElement.showModal();
     this.title.nativeElement.value = this.titleToBeDisplayed;
     this.content.nativeElement.value = this.contentToBeDisplayed;
@@ -116,6 +128,8 @@ export class MainComponent implements OnInit {
 
   deleteNote() {
     this.fs.deleteNote(this.uid, {title: this.titleToBeDisplayed, content: this.contentToBeDisplayed});
+    this.titleToBeDisplayed = '';
+    this.contentToBeDisplayed = '';
   }
 
   signOut() {

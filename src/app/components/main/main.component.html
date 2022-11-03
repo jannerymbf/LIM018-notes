@@ -19,8 +19,9 @@
   </aside>
   <section>
     <div class="display-note flex-column">
-      <h1>{{titleToBeDisplayed}}</h1>
-      <p>{{contentToBeDisplayed}}</p>
+      <textarea class="display-title" disabled>{{titleToBeDisplayed}}</textarea>
+      <div class="separator"></div>
+      <textarea class="display-content" disabled>{{contentToBeDisplayed}}</textarea>
     </div>
     <div class="btn-section flex-column">
       <img src="./assets/icons/edit.png" alt="Edit button" (click)="openModalToModify()">
@@ -30,9 +31,9 @@
   <dialog #addNoteModal>
     <div class="dialog">
       <div class="container-modal flex-column">
-        <input type="text" class="note-title" placeholder="Add a title..." #title>
+        <input type="text" class="note-title" placeholder="Add a title..." autofocus #title>
         <textarea cols="30" rows="10" class="note-content" placeholder="Add some content..." #content></textarea>
-        <button type="button" class="btn-closeModal" (click)="addNote(title.value, content.value)">Add</button>
+        <button type="button" class="btn-closeModal" (click)="addNote(title.value, content.value)" #btnCloseModal></button>
       </div>
     </div>
   </dialog>

@@ -28,6 +28,7 @@ header {
   gap: 50px; 
   font-weight: 700;
   font-size: 24px;
+  cursor: pointer;
 }
 
 /* Style for list of notes */
@@ -85,22 +86,56 @@ aside {
 section {
   width: 70vw;
   height: 88vh;
-  padding: 40px;
+  /* padding: 40px; */
   position: relative;
 }
 
 .display-note {
-  gap: 20px;
+  gap: 10px;
 }
 
-section h1 {
+/* .separator {
+  height: 2px;
+  background-color: #9F9F9F;
+  margin-left: 20px;
+  margin-right: 20px;
+} */
+
+section h1, .display-title {
   font-size: 40px;
+  color: #D98E45;
+  font-weight: 700;
+  height: 10vh;
+  padding: 20px 20px 0px 40px;
+  vertical-align: middle;
+  resize: none;
+  border: none; 
+}
+
+section p, .display-content {
+  font-size: 20px;
+  height: 70vh;
+  padding: 0px 20px 20px 40px;
+  resize: none;
+  border: none;
+}
+
+.display-content:focus, .display-title:focus {
+  outline: none;
+}
+
+.display-content:disabled, .display-title:disabled {
+  background-color: white;
+}
+
+.display-content:disabled {
+  color: #000;
+}
+
+.display-title:disabled {
   color: #D98E45;
 }
 
-section p {
-  font-size: 20px;
-}
 
 section img {
   width: 60px;
@@ -156,6 +191,11 @@ dialog input, dialog textarea {
   padding: 15px;
 }
 
+dialog textarea:focus, dialog input:focus {
+  outline: none;
+  border: 2px solid #6030DA;
+}
+
 .note-title {
   font-size: 32px;
   color: #D98E45;
@@ -185,3 +225,7 @@ dialog input, dialog textarea {
   font-weight: 700;
   border: none;
 }
+
+/* .btn-closeModal::after {
+  content: 'Add';
+} */
