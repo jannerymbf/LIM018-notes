@@ -13,10 +13,7 @@ export class MainComponent implements OnInit {
 
   constructor(private auth: AuthService, private fs: FirestoreService, private router: Router, private renderer: Renderer2) { }
 
-  ngOnInit(): void {
-    this.getCurrentUser();
-    this.getAllUsers();
-  }
+  
 
   name: string = '';
   uid: string = '';
@@ -29,17 +26,21 @@ export class MainComponent implements OnInit {
         this.showNotes();
       })
       .catch(() => {
-        this.name = 'Anonymous';
+        // to prevent users from changinh routes without signing in
+        this.router.navigateByUrl('/login');
+        // this.name = 'Anonymous';
       })
   }
 
   users: any[] = [];
   notes: any[] = [];
   note = {title: '', content: ''};
+  
   @ViewChild('addNoteModal') modalAddNote!: ElementRef;
   @ViewChild('title') title!: ElementRef;
   @ViewChild('content') content!: ElementRef;
   @ViewChild('notes') notesDisplayed!: ElementRef;
+  @ViewChild('btnCloseModal') btnCloseModal!: ElementRef;
 
   getAllUsers() {
     this.fs.getAllUSers().subscribe(querySnapshot => {
@@ -49,36 +50,64 @@ export class MainComponent implements OnInit {
     })
   }
 
+  editStatus: boolean = false;
+  userNotes: any[] = [];
+  titleToBeDisplayed: string = '';
+  contentToBeDisplayed: string = '';
+  
+
+  showModal() {
+    this.editStatus = false;
+    this.btnCloseModal.nativeElement.textContent = 'Add';
+    this.modalAddNote.nativeElement.showModal();
+  }
+
   addNote(title: string, content: string) {
     this.title.nativeElement.value = '';
     this.content.nativeElement.value = '';
 
     if(this.users.includes(this.uid)) {
-      this.fs.updateNote(this.uid, {title: title, content: content})
+      if(this.editStatus) {
+        this.fs.updateNote(this.uid, {title: title, content: content})
         .then(() => {
+          this.deleteNote();
+          this.titleToBeDisplayed = title;
+          this.contentToBeDisplayed = content;
           this.modalAddNote.nativeElement.close();
         })
+      } else {
+        this.fs.updateNote(this.uid, {title: title, content: content})
+        .then(() => {
+          this.titleToBeDisplayed = title;
+          this.contentToBeDisplayed = content;
+          this.modalAddNote.nativeElement.close();
+        })
+      }
     } else {
       this.note = {title: title, content: content};
       this.notes.push(this.note);
       this.fs.addNote({id: this.uid, name: this.name, notes: this.notes})
         .then(() => {
+          this.titleToBeDisplayed = title;
+          this.contentToBeDisplayed = content;
           this.modalAddNote.nativeElement.close();
         })
     }
   }
 
-  userNotes: any[] = [];
-  titleToBeDisplayed: string = '';
-  contentToBeDisplayed: string = '';
-
   showNotes() {
     this.fs.displayNotes(this.uid).subscribe((e: any) => {
       this.userNotes = e.notes;
       // to display the first note when page first loaded
-      this.titleToBeDisplayed = this.userNotes[0].title;
-      this.contentToBeDisplayed = this.userNotes[0].content;
+      // this.titleToBeDisplayed = this.userNotes[0].title;
+      // this.contentToBeDisplayed = this.userNotes[0].content;
     })
+  }
+
+  ngOnInit(): void {
+    this.getCurrentUser();
+    this.getAllUsers();
+    
   }
 
   ngAfterViewInit(): void {
@@ -88,8 +117,19 @@ export class MainComponent implements OnInit {
     });
   }
 
+  openModalToModify() {
+    this.editStatus = true;
+    this.btnCloseModal.nativeElement.textContent = 'Update';
+    this.modalAddNote.nativeElement.showModal();
+    this.title.nativeElement.value = this.titleToBeDisplayed;
+    this.content.nativeElement.value = this.contentToBeDisplayed;
+    console.log('Status', this.editStatus);
+  }
+
   deleteNote() {
     this.fs.deleteNote(this.uid, {title: this.titleToBeDisplayed, content: this.contentToBeDisplayed});
+    this.titleToBeDisplayed = '';
+    this.contentToBeDisplayed = '';
   }
 
   signOut() {
